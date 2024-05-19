@@ -1,31 +1,40 @@
 from tkinter import *
+from tkinter import messagebox
 from time import strftime
-from tkcalendar import *
-
 
 
 screen= Tk()
-screen.geometry('350x600')
-screen.title('CLOCK')
+screen.geometry("300x360")
+screen.title("CLOCK BY MUHAMMAD YOUSAF")
+screen.iconbitmap('icon.ico')
 c=Canvas(screen,bg="#ADD8E6",height=200,width=200)
-filename=PhotoImage(file="BOG.png")
+filename=PhotoImage(file="bg.png")
 bg_label=Label(screen,image=filename)
 bg_label.place(x=0,y=0,relwidth=1,relheight=1)
 
+c.pack()
 
-label = Label(screen, font=("arial", 40),bg='#FFD580')
-label.place(x=20,y=30)
+custom_font = ("Helvetica", 30, "bold")
+
+time_label = Label(screen, font=custom_font,bg="white")
+time_label.place(x=15,y=30)
+time_label.pack()
 
 def time():
+    # Get the current time, day, and date
+    time_string = strftime("%I:%M:%S %p")
+    day_string = strftime("%A")
+    date_string = strftime("%d, %m, %Y")
     
-    time1 = strftime("%I:%M:%S %p \n %A \n %d,%m,%Y")  
-    label.config(text=time1,)
-    label.after(1000, time)  
+    # Update the labels
+    time_label.config(text=time_string + "\n" + day_string + "\n" + date_string)
+    time_label.after(1000, time)
+    time_label.place(x=30,y=90)
+time()
 
-time()  
-cal=Calendar(screen,setmode='day',date_pattern='d/m/yy')
-cal.pack(padx=20,pady=220)
 
-c.pack()
+text_font=("arial",20,"bold")
+
+
 
 screen.mainloop()
